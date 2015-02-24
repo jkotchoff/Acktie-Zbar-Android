@@ -1,5 +1,6 @@
 package com.acktie.mobile.android.camera;
 
+import java.lang.RuntimeException;
 import java.util.List;
 
 import org.appcelerator.kroll.common.Log;
@@ -123,11 +124,11 @@ public class CameraManager {
 
 	public void stop() {
 		if (!isStopped) {
+			isStopped = true;
 			turnOffTorch();
 			camera.stopPreview();
 			camera.setPreviewCallback(null);
 			camera.release();
-			isStopped = true;
 		}
 	}
 
@@ -221,7 +222,6 @@ public class CameraManager {
 			if (autoFocusHandler == null) {
 				autoFocusHandler = new Handler();
 			}
-
 			autoFocusHandler.postDelayed(doAutoFocus, 1000);
 		}
 	};
@@ -229,7 +229,11 @@ public class CameraManager {
 	private Runnable doAutoFocus = new Runnable() {
 		public void run() {
 			if (!isStopped) {
-				camera.autoFocus(autoFocusCB);
+				try {
+					camera.autoFocus(autoFocusCB);
+				} catch (RuntimeException e) {
+					Log.d(LCAT, "Autofocus failed with exception: " + e.getMessage())
+				}
 			}
 		}
 	};
