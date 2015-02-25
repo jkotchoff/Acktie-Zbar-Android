@@ -21,6 +21,13 @@
   <packaging>jar</packaging>
   <name>Acktie Scanning Utility</name>
   <version>1.2-SNAPSHOT</version>
+  <repositories>
+    <repository>
+      <id>project.local</id>
+      <name>project</name>
+      <url>file:${project.basedir}/lib</url>
+    </repository>
+  </repositories>
   <dependencies>
     <dependency>
       <groupId>com.google.zxing</groupId>
@@ -56,41 +63,6 @@
  
 	<build>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>2.4</version>
-        <executions>
-          <execution>
-            <id>install-titanium-core</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <configuration>
-              <groupId>org.appcelerator.titanium.android</groupId>
-              <artifactId>core</artifactId>
-              <version>3.5.0.GA</version>
-              <packaging>jar</packaging>
-              <file>${basedir}/lib/titanium-core-3.5.0.GA.jar</file>
-            </configuration>
-          </execution>
-          <execution>
-            <id>install-kroll-common</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>install-file</goal>
-            </goals>
-            <configuration>
-              <groupId>org.appcelerator.titanium.android</groupId>
-              <artifactId>kroll-common</artifactId>
-              <version>3.5.0.GA</version>
-              <packaging>jar</packaging>
-              <file>${basedir}/lib/titanium-kroll-common-3.5.0.GA.jar</file>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
