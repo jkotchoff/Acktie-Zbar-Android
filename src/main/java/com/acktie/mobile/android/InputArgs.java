@@ -1,7 +1,5 @@
 package com.acktie.mobile.android;
 
-import org.appcelerator.kroll.KrollFunction;
-
 public interface InputArgs {
 	public boolean isContinuous();
 	public void setContinuous(boolean continuous);

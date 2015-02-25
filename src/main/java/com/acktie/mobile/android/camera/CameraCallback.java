@@ -1,30 +1,21 @@
 package com.acktie.mobile.android.camera;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.appcelerator.kroll.common.Log;
-import org.appcelerator.titanium.proxy.TiViewProxy;
-
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.hardware.Camera.Size;
 
-import com.acktie.mobile.android.InputArgs;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.NotFoundException;
-import com.google.zxing.PlanarYUVLuminanceSource;
-import com.google.zxing.Reader;
-import com.google.zxing.ReaderException;
-import com.google.zxing.Result;
-import com.google.zxing.aztec.AztecReader;
+import com.google.zxing.*;
 import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.pdf417.PDF417Reader;
 import com.google.zxing.qrcode.QRCodeReader;
+
+import org.appcelerator.kroll.common.Log;
+import org.appcelerator.titanium.proxy.TiViewProxy;
+
+import com.acktie.mobile.android.InputArgs;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
 
 public class CameraCallback implements PreviewCallback {
 	private static final String LCAT = "Acktiemobile:CameraCallback";
@@ -41,7 +32,7 @@ public class CameraCallback implements PreviewCallback {
 		this.viewProxy = viewProxy;
 		this.args = args;
     // TODO: make this configurable
-		this.readers = new Reader[]{ new QRCodeReader() };
+		this.readers = new Reader[]{ new MultiFormatReader() };
 	}
 
 	@Override
