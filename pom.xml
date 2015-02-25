@@ -21,8 +21,27 @@
   <packaging>jar</packaging>
   <name>Acktie Scanning Utility</name>
   <version>1.0-SNAPSHOT</version>
-
   <dependencies>
+    <dependency>
+      <groupId>com.google.zxing</groupId>
+      <artifactId>core</artifactId>
+      <version>3.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>android</artifactId>
+      <version>4.1.1.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.appcelerator.titanium.android</groupId>
+      <artifactId>core</artifactId>
+      <version>3.5.0.GA</version>
+    </dependency>
+    <dependency>
+      <groupId>org.appcelerator.titanium.android</groupId>
+      <artifactId>kroll-common</artifactId>
+      <version>3.5.0.GA</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -36,18 +55,52 @@
 	</properties>
  
 	<build>
-	<plugins>
-	  <plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-compiler-plugin</artifactId>
-		<version>3.1</version>
-		<configuration>
-			<source>${jdk.version}</source>
-			<target>${jdk.version}</target>
-		</configuration>
-	  </plugin>
-	</plugins>
-	</build>
-
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.4</version>
+        <executions>
+          <execution>
+            <id>install-titanium-core</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>org.appcelerator.titanium.android</groupId>
+              <artifactId>core</artifactId>
+              <version>3.5.0.GA</version>
+              <packaging>jar</packaging>
+              <file>${basedir}/lib/titanium-core-3.5.0.GA.jar</file>
+            </configuration>
+          </execution>
+          <execution>
+            <id>install-kroll-common</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>org.appcelerator.titanium.android</groupId>
+              <artifactId>kroll-common</artifactId>
+              <version>3.5.0.GA</version>
+              <packaging>jar</packaging>
+              <file>${basedir}/lib/titanium-kroll-common-3.5.0.GA.jar</file>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>${jdk.version}</source>
+          <target>${jdk.version}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
 

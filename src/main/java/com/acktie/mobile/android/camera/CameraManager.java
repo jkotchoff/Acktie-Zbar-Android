@@ -232,7 +232,7 @@ public class CameraManager {
 				try {
 					camera.autoFocus(autoFocusCB);
 				} catch (RuntimeException e) {
-					Log.d(LCAT, "Autofocus failed with exception: " + e.getMessage())
+					Log.d(LCAT, "Autofocus failed with exception: " + e.getMessage());
 				}
 			}
 		}
