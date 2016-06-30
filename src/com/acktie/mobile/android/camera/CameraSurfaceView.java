@@ -84,9 +84,15 @@ public class CameraSurfaceView extends SurfaceView implements
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		try {
-			camera.setPreviewCallback(cameraPreviewCallback);
-			camera.setPreviewDisplay(holder);
+			if(camera != null){
+				camera.setPreviewCallback(cameraPreviewCallback);
+				camera.setPreviewDisplay(holder);
+			}
 		} catch (IOException e) {
+			Log.d("DBG", "Error setting camera preview: " + e.getMessage());
+		} catch (NullPointerException e) {
+			Log.d("DBG", "Error setting camera preview: " + e.getMessage());
+		} catch( Exception e){
 			Log.d("DBG", "Error setting camera preview: " + e.getMessage());
 		}
 	}
